@@ -1,4 +1,4 @@
-import { BrowserRouter , Route,Routes } from "react-router-dom";
+import { BrowserRouter ,HashRouter, Route,Routes } from "react-router-dom";
 import MainPlace from './pages/mainPlace.jsx';
 import Homestays from "./pages/homestays.jsx";
 import Hotels from "./pages/hotels.jsx";
@@ -8,7 +8,7 @@ import ProtectedRoute from "./pages/ProtectedRoute.jsx";
 const  App= () =>{
   
   return(
-  <BrowserRouter>
+  <HashRouter>
   <Routes>
     <Route path="/" element={<Login />} />
     <Route path="/mainplaces" element={
@@ -18,7 +18,7 @@ const  App= () =>{
     <Route path="/hotels" element={< Hotels />} />
     <Route path="/nearbyPlaces" element={< NearbyPlaces />} />
   </Routes>
-  </BrowserRouter>
+  </HashRouter>
   )
 }
 export default App;
