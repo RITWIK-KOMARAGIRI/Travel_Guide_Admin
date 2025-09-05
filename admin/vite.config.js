@@ -8,4 +8,5 @@ export default defineConfig({
   plugins: [
     tailwindcss(),
     react()],
+  base: '/Travel_Guide_Admin/'
 })
