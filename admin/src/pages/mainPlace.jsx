@@ -35,7 +35,7 @@ const MainPlace = () => {
     useEffect(() => {
         const fetchMainPlace = async () => {
             try {
-                const res = await axios.get("http://localhost:5000/fetch/mainplace");
+                const res = await axios.get("https://travel-guide-admin.onrender.com/fetch/mainplace");
                 setMainPlaces(res.data);
             } catch (err) {
                 console.error("Error fetching main places:", err);
@@ -56,7 +56,7 @@ const MainPlace = () => {
 
     const handleSaveClick = async (id) => {
         try {
-            await axios.put(`http://localhost:5000/update/mainplace/${id}`, editedPlace);
+            await axios.put(`https://travel-guide-admin.onrender.com/update/mainplace/${id}`, editedPlace);
             const updatedPlaces = [...mainPlaces];
             updatedPlaces[editingIndex] = editedPlace;
             setMainPlaces(updatedPlaces);
