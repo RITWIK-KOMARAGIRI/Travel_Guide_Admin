@@ -3,7 +3,14 @@ const mongoose = require('mongoose');
 const cors = require('cors');
 const app = express();
 
-app.use(cors());
+app.use(cors({
+  origin: [
+    "http://localhost:5173",              // local dev
+    "https://ritwik-komaragiri.github.io" // GitHub Pages frontend
+  ],
+  methods: ["GET", "POST", "PUT", "DELETE"],
+  credentials: true
+}));
 app.use(express.json());
 
 const {
@@ -19,12 +26,9 @@ const {
     AdminloginModel
 } = require('./models/tables.jsx');
 
-mongoose.connect("mongodb://localhost:27017/test", {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-})
-.then(() => console.log("✅ Connected to MongoDB"))
-.catch(err => console.error("❌ Could not connect to MongoDB:", err));
+mongoose.connect("mongodb+srv://Ritwik:Ritwik123@cluster0.3leb3ro.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0")
+  .then(() => console.log("MongoDB connected"))
+  .catch((err) => console.error("MongoDB connection error:", err));
 
 // Fetch main places
 app.get("/fetch/mainplace", async (req, res) => {
@@ -307,6 +311,7 @@ app.post("/login", async (req, res) => {
 });
 
 
-app.listen(5000, () => {
-    console.log('🚀 Server running on http://localhost:5000');
+  const PORT = process.env.PORT || 5000;
+app.listen(PORT, () => {
+  console.log(`Server running at http://localhost:${PORT}`);
 });
