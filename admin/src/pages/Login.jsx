@@ -12,7 +12,7 @@ const Login = () => {
     e.preventDefault(); // prevent page refresh
 
     try {
-      const res = await axios.post("http://localhost:5000/login", {
+      const res = await axios.post("https://travel-guide-admin.onrender.com/login", {
         email,
         password,
       });

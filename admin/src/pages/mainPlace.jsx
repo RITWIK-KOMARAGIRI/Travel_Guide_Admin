@@ -84,7 +84,7 @@ const MainPlace = () => {
         }
 
         try {
-            const res = await axios.post("http://localhost:5000/create/mainplace", editedPlace);
+            const res = await axios.post("https://travel-guide-admin.onrender.com/create/mainplace", editedPlace);
             setMainPlaces([...mainPlaces, res.data]);
             setEditedPlace({
                 placename: '',
@@ -101,7 +101,7 @@ const MainPlace = () => {
     const handleDelete = async (id) => {
         if (window.confirm("Are you sure you want to delete this place?")) {
             try {
-                await axios.delete(`http://localhost:5000/delete/mainplace/${id}`);
+                await axios.delete(`https://travel-guide-admin.onrender.com/delete/mainplace/${id}`);
                 const updatedPlaces = mainPlaces.filter(place => place._id !== id);
                 setMainPlaces(updatedPlaces);
             } catch (error) {

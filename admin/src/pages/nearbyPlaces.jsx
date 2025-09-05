@@ -14,7 +14,7 @@ const NearbyPlaces = () => {
     }, []);
 
     const fetchNearbyPlaces = async () => {
-        const res = await axios.get("http://localhost:5000/fetch/nearbyPlaces");
+        const res = await axios.get("https://travel-guide-admin.onrender.com/fetch/nearbyPlaces");
         setNearbyPlaces(res.data);
     };
 
@@ -40,11 +40,11 @@ const NearbyPlaces = () => {
     const handleSubmit = async () => {
         try {
             if (editingId) {
-                const res = await axios.put(`http://localhost:5000/update/nearbyPlace/${editingId}`, form);
+                const res = await axios.put(`https://travel-guide-admin.onrender.com/update/nearbyPlace/${editingId}`, form);
                 const updated = nearbyPlaces.map(p => p._id === editingId ? res.data : p);
                 setNearbyPlaces(updated);
             } else {
-                const res = await axios.post("http://localhost:5000/create/nearbyPlace", form);
+                const res = await axios.post("https://travel-guide-admin.onrender.com/create/nearbyPlace", form);
                 const found = nearbyPlaces.find(p => p.place === res.data.place);
                 if (found) {
                     const updated = nearbyPlaces.map(p =>

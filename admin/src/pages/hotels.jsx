@@ -9,7 +9,7 @@ const Hotels = () => {
     useEffect(() => {
         const fetchHotels = async () => {
             try {
-                const res = await axios.get("http://localhost:5000/fetch/hotels");
+                const res = await axios.get("https://travel-guide-admin.onrender.com/fetch/hotels");
                 setHotels(res.data);
                 console.log("Hotels fetched:", res.data);
             } catch (err) {
@@ -46,11 +46,11 @@ const Hotels = () => {
     const handleSubmit = async () => {
         try {
             if (editingId) {
-                const res = await axios.put(`http://localhost:5000/update/hotel/${editingId}`, form);
+                const res = await axios.put(`https://travel-guide-admin.onrender.com/update/hotel/${editingId}`, form);
                 const updated = hotels.map((h) => (h._id === editingId ? res.data : h));
                 setHotels(updated);
             } else {
-                const res = await axios.post("http://localhost:5000/create/hotel", form);
+                const res = await axios.post("https://travel-guide-admin.onrender.com/create/hotel", form);
                 setHotels(res.data);
             }
             resetForm();
@@ -64,7 +64,7 @@ const Hotels = () => {
             const confirmDelete = window.confirm("Are you sure you want to delete this entire place?");
             if (!confirmDelete) return;
 
-            const res = await axios.delete(`http://localhost:5000/delete/hotel/${id}`);
+            const res = await axios.delete(`https://travel-guide-admin.onrender.com/delete/hotel/${id}`);
             setHotels(res.data);
         } catch (err) {
             console.error("Error deleting place", err);
@@ -76,7 +76,7 @@ const Hotels = () => {
             const confirmDelete = window.confirm("Are you sure you want to delete this individual hotel stay?");
             if (!confirmDelete) return;
 
-            const res = await axios.delete(`http://localhost:5000/delete/single/hotel/${placeId}/${hotelIndex}`);
+            const res = await axios.delete(`https://travel-guide-admin.onrender.com/delete/single/hotel/${placeId}/${hotelIndex}`);
             setHotels(res.data);
         } catch (err) {
             console.error("Error deleting individual hotel:", err);

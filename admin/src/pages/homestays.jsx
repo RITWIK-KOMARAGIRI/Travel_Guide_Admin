@@ -11,7 +11,7 @@ const Homestays = () => {
     }, []);
 
     const fetchHomestays = async () => {
-        const res = await axios.get("http://localhost:5000/fetch/homestays");
+        const res = await axios.get("https://travel-guide-admin.onrender.com/fetch/homestays");
         setHomestays(res.data);
     };
 
@@ -32,11 +32,11 @@ const Homestays = () => {
     const handleSubmit = async () => {
         try {
             if (editingId) {
-                const res = await axios.put(`http://localhost:5000/update/homestay/${editingId}`, form);
+                const res = await axios.put(`https://travel-guide-admin.onrender.com/update/homestay/${editingId}`, form);
                 const updated = homestays.map((h) => (h._id === editingId ? res.data : h));
                 setHomestays(updated);
             } else {
-                const res = await axios.post("http://localhost:5000/create/homestay", form);
+                const res = await axios.post("https://travel-guide-admin.onrender.com/create/homestay", form);
                 setHomestays(res.data);
             }
             resetForm();
@@ -59,7 +59,7 @@ const Homestays = () => {
         const confirm = window.confirm("Are you sure you want to delete this homestay?");
         if (!confirm) return;
 
-        const res = await axios.delete(`http://localhost:5000/delete/homestay/${id}`);
+        const res = await axios.delete(`https://travel-guide-admin.onrender.com/delete/homestay/${id}`);
         setHomestays(res.data);
     } catch (err) {
         console.error("Failed to delete homestay:", err);
@@ -71,7 +71,7 @@ const handleDeleteStay = async (homestayId, stayIndex) => {
     if (!confirm) return;
 
     try {
-        const res = await axios.delete(`http://localhost:5000/delete/homestay/${homestayId}/stay/${stayIndex}`);
+        const res = await axios.delete(`https://travel-guide-admin.onrender.com/delete/homestay/${homestayId}/stay/${stayIndex}`);
         // Update the homestays list with new data
         setHomestays((prev) =>
             prev.map((h) => (h._id === res.data._id ? res.data : h))
